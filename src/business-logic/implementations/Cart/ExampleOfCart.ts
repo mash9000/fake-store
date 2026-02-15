@@ -13,7 +13,7 @@ export class ExampleOfCart implements ICart {
     }
 
     getListOfProductsInTheCart(): IProduct[] {
-        return [...this.products.values()];
+        return  [...this.products.values()];
     }
 
     removeProductById(productId: number): IProduct[] {
