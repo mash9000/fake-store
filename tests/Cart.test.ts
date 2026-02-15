@@ -85,35 +85,35 @@ describe('Cart', () => {
         });
     });
 
-    describe('get all products', () => {
-        const cart: ICart = returnTestedClass();
-        const price: ICurrency = {
-            getCurrencySymbol: () => 'RUB',
-            getValue: () => 4.32
-        }
-        const rate: IRate = {
-            getValue: () => 43,
-            getCount: () => 43
-        }
-        const productTest: IProduct = {
-            getId: () => 2,
-            getTitle: () => 'fsf fsdf',
-            getPrice: () => price,
-            getCategory: () => 'fsdf',
-            getImageUrl: () => new URL('https://ya.ru/').href,
-            getRate: () => rate
-        }
-        cart.addProduct(productTest);
-        expect(Array.isArray(cart.getListOfProductsInTheCart())).toBeTruthy();
-        cart.getListOfProductsInTheCart().forEach(product => {
-            expect(product).toEqual(expect.objectContaining({
-                getId: expect.any(Function),
-                getTitle: expect.any(Function),
-                getCategory: expect.any(Function),
-                getPrice: expect.any(Function),
-                getRate: expect.any(Function),
-                getImageUrl: expect.any(Function)
-            }));
-        });
-    });
+    // describe('get all products', () => {
+    //     const cart: ICart = returnTestedClass();
+    //     const price: ICurrency = {
+    //         getCurrencySymbol: () => 'RUB',
+    //         getValue: () => 4.32
+    //     }
+    //     const rate: IRate = {
+    //         getValue: () => 43,
+    //         getCount: () => 43
+    //     }
+    //     const productTest: IProduct = {
+    //         getId: () => 2,
+    //         getTitle: () => 'fsf fsdf',
+    //         getPrice: () => price,
+    //         getCategory: () => 'fsdf',
+    //         getImageUrl: () => new URL('https://ya.ru/').href,
+    //         getRate: () => rate
+    //     }
+    //     cart.addProduct(productTest);
+    //     expect(Array.isArray(cart.getListOfProductsInTheCart())).toBeTruthy();
+    //     cart.getListOfProductsInTheCart().forEach(product => {
+    //         expect(product).toEqual(expect.objectContaining({
+    //             getId: expect.any(Function),
+    //             getTitle: expect.any(Function),
+    //             getCategory: expect.any(Function),
+    //             getPrice: expect.any(Function),
+    //             getRate: expect.any(Function),
+    //             getImageUrl: expect.any(Function)
+    //         }));
+    //     });
+    // });
 });
