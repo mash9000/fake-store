@@ -80,7 +80,9 @@ describe('Cart', () => {
             getValue: () => 43,
             getCount: () => 43
         }
-        expect(() => cart.removeProductById(377)).toThrow(CartError);
+        it('fa', () => {
+            expect(() => cart.removeProductById(377)).toThrow(CartError);
+        });
     });
 
     describe('get all products', () => {
