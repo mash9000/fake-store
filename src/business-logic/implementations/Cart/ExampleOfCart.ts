@@ -7,7 +7,7 @@ export class ExampleOfCart implements ICart {
 
     addProduct(product: IProduct): IProduct[] {
         if(this.products.has(product.getId()))
-            throw new CartError('the product with the specified ID is already in your basket');
+             throw new CartError('the product with the specified ID is already in your basket');
         this.products.set(product.getId(), product);
         return this.getListOfProductsInTheCart();
     }
