@@ -5,40 +5,40 @@ import type {DSProduct} from "../DSProduct.ts";
 export class ProductManager {
     async getAllProducts(): Promise<IProduct[]> {
         try {
-            const response = await fetch(CentreURLRequests.getAllProducts());
-            if (!response.ok) {
-                throw {
-                    message: `Server error: ${response.statusText}`,
-                    status: response.status
-                };
-            }
+            const response = await fetch(CentreURLRequests.getAllProducts(), {method: "GET"});
+            if (!response.ok)
+                this.throwErrorOfResponse(response);
             const products: DSProduct[] = await response.json();
             return products.map((p): IProduct => this.convertFromDSProductToIProduct(p));
         } catch (err: any) {
-            throw {
-                message: err.message ?? 'Unknown error',
-                status: err.status ?? null
-            };
+            this.throwErrorOfError(err);
         }
     }
 
     async getProductById(id: number): Promise<IProduct> {
         try {
-            const response = await fetch(`${CentreURLRequests.getASingleProduct()}${id}`);
-            if (!response.ok) {
-                throw {
-                    message: `Server error: ${response.statusText}`,
-                    status: response.status
-                };
-            }
+            const response = await fetch(`${CentreURLRequests.getASingleProduct()}${id}`, {method: "GET"});
+            if (!response.ok)
+                this.throwErrorOfResponse(response);
             const product: DSProduct = await response.json();
             return this.convertFromDSProductToIProduct(product);
         } catch (err: any) {
-            throw {
-                message: err.message ?? 'Unknown error',
-                status: err.status ?? null
-            };
+            this.throwErrorOfError(err);
         }
+    }
+
+    private throwErrorOfResponse(response: Response): never {
+        throw {
+            message: `Server error: ${response.statusText}`,
+            status: response.status
+        };
+    }
+
+    private throwErrorOfError(err: any): never {
+        throw {
+            message: err.message ?? 'Unknown error',
+            status: err.status ?? null
+        };
     }
 
     private convertFromDSProductToIProduct(dsProduct: DSProduct): IProduct {

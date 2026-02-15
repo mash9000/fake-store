@@ -1,4 +1,4 @@
-.button {
+.button-add-to-cart {
   outline: none;
   border: none;
   background: #0F172A;
@@ -12,13 +12,13 @@
   margin-left: auto;
 }
 
-.button--hover:hover {
+.button-add-to-cart--hover:hover {
   background: #1E293B;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   transform: translateY(-1px);
 }
 
-.button--active:active {
+.button-add-to-cart--active:active {
   background: #0B1220;
   transform: translateY(0);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);

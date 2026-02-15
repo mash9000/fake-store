@@ -6,7 +6,7 @@ import type {
     ImageOfProductsProps
 } from "../ImageOfProduct/ImageOfProductsProps.ts";
 import type {RateProps} from "../Rate/RateProps.ts";
-import {Button} from "../Button/Button.tsx";
+import {ButtonAddToCart} from "../Button/ButtonAddToCart.tsx";
 
 type ProductCardProps = ImageOfProductsProps & RateProps & {
     category: string,
@@ -35,7 +35,7 @@ export const ProductCard: FC<ProductCardProps> = ({
                 <Rate
                     value={value}
                     numberOfReviews={numberOfReviews}/>
-                <Button/>
+                <ButtonAddToCart/>
             </div>
         </article>
     );

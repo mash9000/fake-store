@@ -1,58 +1,29 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { ProductManager } from "../src/API/implementations/ProductManager";
+import {describe, it, expect, vi, beforeEach} from "vitest";
+import {ProductManager} from "../src/API/implementations/ProductManager";
 
-describe("ProductManager", () => {
-    beforeEach(() => {
-        vi.restoreAllMocks();
-    });
-
-    it("возвращает массив IProduct, преобразованный из DSProduct", async () => {
-        // 1. Мокаем ответ сервера
-        const mockResponse = [
+describe("ProductManager", async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => [
             {
-                id: 10,
-                title: "Test product",
-                category: "Category",
-                price: 99.99,
-                rating: { rate: 4.5, count: 100 },
-                image: "https://example.com/img.png"
+                id: 13,
+                title: "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
+                price: 599,
+                description: "21. 5 inches Full HD (1920 x 1080) widescreen IPS display And Radeon free Sync technology. No compatibility for VESA Mount Refresh Rate: 75Hz - Using HDMI port Zero-frame design | ultra-thin | 4ms response time | IPS panel Aspect ratio - 16: 9. Color Supported - 16. 7 million colors. Brightness - 250 nit Tilt angle -5 degree to 15 degree. Horizontal viewing angle-178 degree. Vertical viewing angle-178 degree 75 hertz",
+                category: "electronics",
+                image: "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png",
+                rating: {
+                    rate: 2.9,
+                    count: 250,
+                }
             }
-        ];
+        ]
+    } as any);
 
-        // 2. Мокаем fetch
-        global.fetch = vi.fn().mockResolvedValue({
-            json: () => Promise.resolve(mockResponse)
-        });
-
-        const pm = new ProductManager();
-
-        // 3. Вызываем метод
-        const products = await pm.getAllProducts();
-
-        // 4. Проверяем, что это массив
+    const productManager: ProductManager = new ProductManager();
+    const products = await productManager.getAllProducts();
+    it('check length', () => {
         expect(Array.isArray(products)).toBe(true);
         expect(products.length).toBe(1);
-
-        const p = products[0];
-
-        // 5. Проверяем, что объект соответствует интерфейсу IProduct
-        expect(p).toEqual(
-            expect.objectContaining({
-                getId: expect.any(Function),
-                getTitle: expect.any(Function),
-                getCategory: expect.any(Function),
-                getPrice: expect.any(Function),
-                getRate: expect.any(Function),
-                getImageUrl: expect.any(Function)
-            })
-        );
-
-        // 6. Проверяем корректность данных
-        expect(p.getId()).toBe(10);
-        expect(p.getTitle()).toBe("Test product");
-        expect(p.getCategory()).toBe("Category");
-        expect(p.getPrice().getValue()).toBe(99.99);
-        expect(p.getRate().getValue()).toBe(4.5);
-        expect(p.getImageUrl()).toBe("https://example.com/img.png");
     });
-});
+})

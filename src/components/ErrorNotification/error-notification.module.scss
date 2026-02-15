@@ -1,0 +1,39 @@
+.error-notification {
+  width: 416px;
+  height: 457px;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 20px;
+  background: url(/images/coffee.png) center 20px no-repeat, linear-gradient(#fff, #fff);
+  background-size: 362px 183px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: absolute;
+  top: calc(50% - 229px);
+  left: calc(50% - 208px);
+
+  z-index: 2;
+}
+
+.error-notification__heading {
+  font: {
+    family: 'Roboto', sans-serif;
+    size: 40px;
+    weight: bold;
+  }
+  color: #FB2C36;
+  width: 367px;
+  text-align: center;
+  margin-top: 249px;
+}
+
+.error-notification__message {
+  font: {
+    family: 'Roboto', sans-serif;
+    size: 20px;
+    weight: bold;
+  }
+  color: #4A5565;
+  width: 367px;
+  text-align: center;
+  margin-top: 24px;
+}

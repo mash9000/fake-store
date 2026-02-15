@@ -27,15 +27,10 @@ describe('Cart', () => {
             }
             const productTest: IProduct = {
                 getId: () => Math.floor(Math.random() * (100000 - 1000 + 1)) + 1000,
-
                 getTitle: () => 'fsf fsdf',
-
                 getPrice: () => price,
-
                 getCategory: () => 'fsdf',
-
                 getImageUrl: () => new URL('https://ya.ru/').href,
-
                 getRate: () => rate
             }
             for (let i = 1; i <= valuesForTest; i++) {
@@ -55,29 +50,19 @@ describe('Cart', () => {
             }
             const productTest1: IProduct = {
                 getId: () => 2,
-
                 getTitle: () => 'fsf fsdf',
-
                 getPrice: () => price,
-
                 getCategory: () => 'fsdf',
-
                 getImageUrl: () => new URL('https://ya.ru/').href,
-
                 getRate: () => rate
             }
 
             const productTest2: IProduct = {
                 getId: () => 2,
-
                 getTitle: () => 'fsf fsdf',
-
                 getPrice: () => price,
-
                 getCategory: () => 'fsdf',
-
                 getImageUrl: () => new URL('https://ya.ru/').href,
-
                 getRate: () => rate
             }
             expect(() => cart.addProduct(productTest1)).not.toThrow();
@@ -110,15 +95,10 @@ describe('Cart', () => {
         }
         const productTest: IProduct = {
             getId: () => 2,
-
             getTitle: () => 'fsf fsdf',
-
             getPrice: () => price,
-
             getCategory: () => 'fsdf',
-
             getImageUrl: () => new URL('https://ya.ru/').href,
-
             getRate: () => rate
         }
         cart.addProduct(productTest);
