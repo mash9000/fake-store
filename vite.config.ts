@@ -6,6 +6,9 @@ export default defineConfig({
     test: {
         environment: 'jsdom',
         globals: true,
-        setupFiles: '/Users/mash/Projects/fake-store/setupTest.ts',
+        // setupFiles: './setupTest.ts',
     },
+    build: {
+        outDir: 'build'
+    }
 })
