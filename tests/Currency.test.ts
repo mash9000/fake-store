@@ -18,7 +18,7 @@ describe('Currency', () => {
     describe('currency title validation', () => {
         describe('valid values  ', () => {
             const validValues = ['USD', 'RUB', 'CAD'];
-            it.each(validValues)('create currency for %s', (symbolStr: string) => {
+            it.each(validValues)('create currency for %s', (symbolStr:string) => {
                 expect(() => createCurrency({symbolStr})).not.toThrow();
             });
         });
