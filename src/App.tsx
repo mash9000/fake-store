@@ -1,10 +1,13 @@
 import {useEffect, useState} from "react";
 import type {IProduct} from "./business-logic/IProduct.ts";
 import {ProductManager} from "./API/implementations/ProductManager.ts";
+import {ProductCard} from "./components/ProductCard/ProductCard.tsx";
+import {nanoid} from "nanoid";
+import {ProductList} from "./components/ProductList/ProductList.tsx";
 
 export const App = () => {
-    const [errorNotification, setErrorNotification] = useState<string | null>(null);
     const [products, setProducts] = useState<IProduct[]>([]);
+    const [singleProduct, setSingleProduct] = useState<IProduct>();
     const pm = new ProductManager();
     useEffect(() => {
         const loadData = async () => {
@@ -14,23 +17,20 @@ export const App = () => {
             } catch (err: any) {
                 const message = err.message ?? 'Unknown error';
                 const status = err.status ?? null;
-                setErrorNotification(status ? `${message} (code ${status})` : message);
             }
         };
 
         loadData();
     }, [])
 
-    const [singleProduct, setSingleProduct] = useState<IProduct>();
     useEffect(() => {
         const loadData = async () => {
             try {
-                const data = await pm.getProductById(3535937539);
+                const data = await pm.getProductById(5);
                 setSingleProduct(data);
             } catch (err: any) {
                 const message = err.message ?? 'Unknown error';
                 const status = err.status ?? null;
-                setErrorNotification(status ? `${message} (code ${status})` : message);
             }
         };
 
@@ -38,13 +38,6 @@ export const App = () => {
     }, [])
 
     return (
-        <>
-            {
-                products.map((p) => (<p key={p.getId()}>{p.getTitle()}</p>))
-            }
-            <h1>{singleProduct?.getTitle()}</h1>
-            {errorNotification !== null && (
-                <strong>{errorNotification}</strong>)}
-        </>
+        <ProductList productList={products}/>
     )
 }

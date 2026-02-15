@@ -47,7 +47,7 @@ export class ProductManager {
             getTitle: () => dsProduct.title,
             getCategory: () => dsProduct.category,
             getPrice: () => ({
-                getCurrencySymbol: () => 'USD',
+                getCurrencySymbol: () => '$',
                 getValue: () => dsProduct.price
             }),
             getRate: () => ({

@@ -1,0 +1,16 @@
+.product-list {
+  width: 1000px;
+  height: 900px;
+  position: absolute;
+  top: 50px;
+  left: calc(50% - 500px);
+  box-sizing: border-box;
+  padding: 50px;
+  border: 2px solid black;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+}
