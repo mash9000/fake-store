@@ -26,7 +26,7 @@ describe('Currency', () => {
         describe('invalid values', () => {
             const invalidValues = ['', 'Usd', 'usd', '123', '$€!', ' USD', 'USD ', 'U S D'];
             it.each(invalidValues)('create currency for %s', (symbolStr: string) => {
-                expect(() => createCurrency({symbolStr})).toThrow(CurrencyError);
+                expect(() =>  createCurrency({symbolStr})).toThrow(CurrencyError);
             }) ;
         });
     });
