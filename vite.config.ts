@@ -4,14 +4,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
     plugins: [react()],
     test: {
-        environment: "jsdom", pool: "threads", // или "vm"
-        poolOptions: {
-            threads: {
-                singleThread: true
-            }
-        },
-        build: {
-            outDir: 'build'
-        }
+        environment: "jsdom",
+        pool: "vm",
+    },
+    build: {
+        outDir: 'build'
     }
 })
